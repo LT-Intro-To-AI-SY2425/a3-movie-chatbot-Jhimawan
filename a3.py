@@ -100,7 +100,13 @@ def title_before_year(matches: List[str]) -> List[str]:
         a list of movie titles made before the passed in year, exclusive (meaning if you
         pass in 1992 you won't get any movies made that year, only before)
     """
-    pass
+    result = []
+    year = int(matches[0])
+    for movie in movie_db:
+        movieC = get_year(movie)
+        if movieC < year:
+            result.append(get_title(movie))
+    return result
 
 
 def title_after_year(matches: List[str]) -> List[str]:
@@ -114,7 +120,13 @@ def title_after_year(matches: List[str]) -> List[str]:
         a list of movie titles made after the passed in year, exclusive (meaning if you
         pass in 1992 you won't get any movies made that year, only after)
     """
-    pass
+    result = []
+    year = int(matches[0])
+    for movie in movie_db:
+        movieC = get_year(movie)
+        if movieC > year:
+            result.append(get_title(movie))
+    return result
 
 
 def director_by_title(matches: List[str]) -> List[str]:
@@ -126,7 +138,13 @@ def director_by_title(matches: List[str]) -> List[str]:
     Returns:
         a list of 1 string, the director of the movie
     """
-    pass
+    result = []
+    movieT = int(matches[0])
+    for movie in movie_db:
+        title = get_title(movie)
+        if title == movieT:
+            result.append(get_director(movie))
+    return result
 
 
 def title_by_director(matches: List[str]) -> List[str]:
