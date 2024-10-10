@@ -56,13 +56,13 @@ def title_by_year(matches: List[str]) -> List[str]:
     """
     result = []
     year = int(matches[0])
-    print(year)
+    # print(year)
     for movie in movie_db:
-        print(get_year(movie))
-        print(get_title(movie))
+        # print(get_year(movie))
+        # print(get_title(movie))
         if get_year(movie) == year:
             result.append(get_title(movie))
-            print("FOUND")
+            # print("FOUND")
     return result
 
 
@@ -79,15 +79,17 @@ def title_by_year_range(matches: List[str]) -> List[str]:
         a list of movie titles made during those years, inclusive (meaning if you pass
         in ["1991", "1994"] you will get movies made in 1991, 1992, 1993 & 1994)
     """
-    result = []
+
+
+    
     year1 = int(matches[0])
     year2 = int(matches[1])
+    result = []
     for movie in movie_db:
-        movieC = get_year(movie)
-        if movieC >= year1 or movieC <= year2:
+        if year1 <= get_year(movie) <= year2:
             result.append(get_title(movie))
-    return result
 
+    return result
 
 def title_before_year(matches: List[str]) -> List[str]:
     """Finds all movies made before the passed in year
@@ -179,7 +181,8 @@ def actors_by_title(matches: List[str]) -> List[str]:
     for movie in movie_db:
         title = get_title(movie)
         if movieT == title:
-            result.append(get_actors(movie))
+            for actor in get_actors(movie):
+                result.append(actor)
     return result
 
 
@@ -213,9 +216,9 @@ def title_by_actor(matches: List[str]) -> List[str]:
     result = []
     actor = matches[0]
     for movie in movie_db:
-        movieA = get_actors(movie)
-        if actor == movieA:
-            result.append(get_title(movie))
+        for actor1 in movie:
+            if actor1 == actor:
+                result.append(get_title(movie))
     return result
 
 
@@ -260,7 +263,10 @@ def search_pa_list(src: List[str]) -> List[str]:
         
         if mat != None:
             result = action(mat)
+            if result == []:
+                return ["No answers"]
             return result
+        return ["I don't understand"]
 
 
 def query_loop() -> None:
