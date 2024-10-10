@@ -139,7 +139,7 @@ def director_by_title(matches: List[str]) -> List[str]:
         a list of 1 string, the director of the movie
     """
     result = []
-    movieT = int(matches[0])
+    movieT = matches[0]
     for movie in movie_db:
         title = get_title(movie)
         if title == movieT:
@@ -156,7 +156,13 @@ def title_by_director(matches: List[str]) -> List[str]:
     Returns:
         a list of movies titles directed by the passed in director
     """
-    pass
+    result = []
+    director = matches[0]
+    for movie in movie_db:
+        movieD = get_director(movie)
+        if director == movieD:
+            result.append(get_title(movie))
+    return result
 
 
 def actors_by_title(matches: List[str]) -> List[str]:
@@ -168,7 +174,13 @@ def actors_by_title(matches: List[str]) -> List[str]:
     Returns:
         a list of actors who acted in the passed in title
     """
-    pass
+    result = []
+    movieT = matches[0]
+    for movie in movie_db:
+        title = get_title(movie)
+        if movieT == title:
+            result.append(get_actors(movie))
+    return result
 
 
 def year_by_title(matches: List[str]) -> List[int]:
@@ -180,7 +192,13 @@ def year_by_title(matches: List[str]) -> List[int]:
     Returns:
         a list of one item (an int), the year that the movie was made
     """
-    pass
+    result = []
+    movieT = matches[0]
+    for movie in movie_db:
+        title = get_title(movie)
+        if movieT == title:
+            result.append(get_year(movie))
+    return result
 
 
 def title_by_actor(matches: List[str]) -> List[str]:
@@ -192,7 +210,13 @@ def title_by_actor(matches: List[str]) -> List[str]:
     Returns:
         a list of movie titles that the actor acted in
     """
-    pass
+    result = []
+    actor = matches[0]
+    for movie in movie_db:
+        movieA = get_actors(movie)
+        if actor == movieA:
+            result.append(get_title(movie))
+    return result
 
 
 # dummy argument is ignored and doesn't matter
