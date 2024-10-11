@@ -80,8 +80,6 @@ def title_by_year_range(matches: List[str]) -> List[str]:
         in ["1991", "1994"] you will get movies made in 1991, 1992, 1993 & 1994)
     """
 
-
-    
     year1 = int(matches[0])
     year2 = int(matches[1])
     result = []
@@ -259,13 +257,15 @@ def search_pa_list(src: List[str]) -> List[str]:
         ["No answers"] if it finds a match but no answers
     """
     for pattern, action in pa_list:
+        print(pattern, src, action)
         mat = match(pattern, src)
+        print(mat)
         
         if mat != None:
             result = action(mat)
             if result == []:
                 return ["No answers"]
-            return result
+
         return ["I don't understand"]
 
 
@@ -349,6 +349,7 @@ if __name__ == "__main__":
     assert sorted(search_pa_list(["hi", "there"])) == sorted(
         ["I don't understand"]
     ), "failed search_pa_list test 1"
+
     assert sorted(search_pa_list(["who", "directed", "jaws"])) == sorted(
         ["steven spielberg"]
     ), "failed search_pa_list test 2"
