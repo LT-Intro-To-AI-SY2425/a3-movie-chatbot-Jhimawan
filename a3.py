@@ -265,8 +265,8 @@ def search_pa_list(src: List[str]) -> List[str]:
             result = action(mat)
             if result == []:
                 return ["No answers"]
-
-        return ["I don't understand"]
+            return result
+    return ["I don't understand"]
 
 
 def query_loop() -> None:
